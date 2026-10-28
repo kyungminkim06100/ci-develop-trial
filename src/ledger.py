@@ -15,6 +15,6 @@ def transfer(balances, src, dst, amount):
 def upsert_sql(balances):
     rows = ", ".join(f"('{k}', {v})" for k, v in sorted(balances.items()))
     return (
-        f"INSERT INTO balances(account, amount) VALUES {rows} "
+        f"INSERT INTO balances(acct, amount) VALUES {rows} "
         "ON CONFLICT (account) DO UPDATE SET amount = EXCLUDED.amount;"
     )
