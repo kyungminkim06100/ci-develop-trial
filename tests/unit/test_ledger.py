@@ -14,6 +14,10 @@ class TransferTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             transfer({"a": 1}, "a", "b", 3)
 
+    def test_rejects_zero(self):
+        with self.assertRaises(ValueError):
+            transfer({"a": 1}, "a", "b", 0)
+
     def test_sql_mentions_every_account(self):
         sql = upsert_sql({"a": 1, "b": 2})
         self.assertIn("('a', 1)", sql)
