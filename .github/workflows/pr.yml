@@ -1,0 +1,13 @@
+# PR은 빌드·단위 시험만 돈다. 망 시험은 develop에 머지된 뒤 develop.yml이 돈다.
+name: pr
+on:
+  pull_request:
+    branches: [develop]
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m unittest discover -s tests/unit -v
